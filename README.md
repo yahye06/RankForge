@@ -1,6 +1,6 @@
-# SEO Agent Bot
+# RankForge
 
-SEO Agent Bot is a full-stack SEO workspace for turning topic lists into structured content plans and identifying pages that need improvement. The Next.js application includes a CSV-driven batch generator, a performance dashboard, AI-backed API routes, a lightweight crawler, and persisted SEO runs through Prisma and SQLite.
+RankForge is a full-stack SEO workspace for turning topic lists into structured content plans and identifying pages that need improvement. The Next.js application includes a CSV-driven batch generator, a performance dashboard, AI-backed API routes, a lightweight crawler, and persisted SEO runs through Prisma and SQLite.
 
 The current UI is a working prototype: batch drafts and analytics are deterministic sample data, while the server routes demonstrate the AI and persistence workflow with Anthropic. This keeps the interface easy to test locally while preserving a clear path to production data sources.
 
