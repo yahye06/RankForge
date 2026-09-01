@@ -7,15 +7,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check": "npm run lint && npm run build",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@prisma/client": "^7.2.0",
+    "@anthropic-ai/sdk": "^0.122.0",
+    "@prisma/client": "^6.19.1",
     "axios": "^1.13.2",
     "cheerio": "^1.1.2",
     "next": "16.1.1",
     "openai": "^6.25.0",
-    "prisma": "^7.2.0",
+    "prisma": "^6.19.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

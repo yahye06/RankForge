@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 
+interface SeoResult {
+  keywords: string[];
+  brief: string;
+}
+
 export default function Home() {
   const [domain, setDomain] = useState("");
   const [topic, setTopic] = useState("");
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<SeoResult | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {

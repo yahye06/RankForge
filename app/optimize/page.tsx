@@ -1,6 +1,24 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
+interface ContentTopic {
+  topic: string;
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  status: string;
+  needsWork: boolean;
+}
+
+interface OptimizedTopic extends ContentTopic {
+  oldTitle: string;
+  newTitle: string;
+  oldMeta: string;
+  newMeta: string;
+  improvements: string[];
+  projectedCTR: string;
+}
 
 // Mock analytics data
 const mockAnalytics = {
@@ -11,23 +29,26 @@ const mockAnalytics = {
   'link building': { clicks: 8, impressions: 300, ctr: 2.7 },
 };
 
+const initialTopics: ContentTopic[] = Object.entries(mockAnalytics).map(
+  ([topic, data]) => ({
+    topic,
+    ...data,
+    status:
+      data.ctr < 5
+        ? '🔴 Needs optimization'
+        : data.ctr < 10
+          ? '🟡 Could improve'
+          : '🟢 Performing well',
+    needsWork: data.ctr < 8,
+  }),
+);
+
 export default function OptimizePage() {
-  const [topics, setTopics] = useState<any[]>([]);
-  const [optimized, setOptimized] = useState<any[]>([]);
+  const [topics] = useState<ContentTopic[]>(initialTopics);
+  const [optimized, setOptimized] = useState<OptimizedTopic[]>([]);
 
-  useEffect(() => {
-    // Load topics with analytics
-    const topicsWithData = Object.entries(mockAnalytics).map(([topic, data]) => ({
-      topic,
-      ...data,
-      status: data.ctr < 5 ? '🔴 Needs optimization' : data.ctr < 10 ? '🟡 Could improve' : '🟢 Performing well',
-      needsWork: data.ctr < 8,
-    }));
-    setTopics(topicsWithData);
-  }, []);
-
-  const optimizeTopic = (topic: any) => {
-    const improved = {
+  const optimizeTopic = (topic: ContentTopic) => {
+    const improved: OptimizedTopic = {
       ...topic,
       oldTitle: `Guide to ${topic.topic}`,
       newTitle: `${topic.topic}: Proven Strategies That Get Results in 2025`,
@@ -41,7 +62,13 @@ export default function OptimizePage() {
       ],
       projectedCTR: (topic.ctr * 1.5).toFixed(1),
     };
-    setOptimized([...optimized, improved]);
+    setOptimized((current) => {
+      if (current.some((item) => item.topic === topic.topic)) {
+        return current;
+      }
+
+      return [...current, improved];
+    });
   };
 
   const optimizeAll = () => {

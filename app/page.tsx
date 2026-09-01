@@ -15,7 +15,7 @@ export default function Home() { //creates homepage
           SEO Agent Bot Project
         </h1>
         <p style={{ fontSize: '1.2rem', color: '#666'}}>
-          Yahye Abdukadir's Project
+          Yahye Abdukadir&apos;s Project
         </p>
       </div>
 

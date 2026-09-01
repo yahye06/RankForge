@@ -2,9 +2,18 @@
 
 import { useState } from 'react';
 
+interface Draft {
+  topic: string;
+  title: string;
+  metaDescription: string;
+  h1: string;
+  draft: string;
+  createdAt: string;
+}
+
 export default function BatchPage() {
   const [topics, setTopics] = useState<string[]>([]);
-  const [drafts, setDrafts] = useState<any[]>([]);
+  const [drafts, setDrafts] = useState<Draft[]>([]);
   const [loading, setLoading] = useState(false);
 
   // Handle CSV upload
