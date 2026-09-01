@@ -1,7 +1,4 @@
 @import "tailwindcss";
-
-
-/* Add this to app/globals.css */
 body {
   background-color: #000000;
   margin: 0;

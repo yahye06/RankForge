@@ -1,4 +1,3 @@
--- CreateTable
 CREATE TABLE "Run" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "domain" TEXT NOT NULL,

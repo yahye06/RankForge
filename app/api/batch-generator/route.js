@@ -7,13 +7,10 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
 export async function POST(request) {
   const { topics, domain } = await request.json()
-  // topics = ["best running shoes", "top hiking gear"]
-  // domain = "yoursite.com"
 
   const results = []
 
   for (const topic of topics) {
-    // Ask Claude to generate SEO brief
     const response = await client.messages.create({
       model: "claude-3-haiku-20240307",
       max_tokens: 1500,
@@ -37,10 +34,8 @@ export async function POST(request) {
 
     const brief = response.content[0].text
 
-    // Extract keywords (simple approach)
     const keywords = topic.split(' ').join(', ')
 
-    // Save to database as a Run
     const run = await prisma.run.create({
       data: {
         domain: domain || "unknown",

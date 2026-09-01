@@ -16,7 +16,6 @@ export default function BatchPage() {
   const [drafts, setDrafts] = useState<Draft[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Handle CSV upload
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -24,17 +23,16 @@ export default function BatchPage() {
     const reader = new FileReader();
     reader.onload = (event) => {
       const text = event.target?.result as string;
-      const lines = text.split('\n').slice(1); // Skip header
+      const lines = text.split('\n').slice(1);
       const cleanTopics = lines
         .map(line => line.trim())
         .filter(Boolean)
-        .slice(0, 5); // Limit to 5 topics
+        .slice(0, 5);
       setTopics(cleanTopics);
     };
     reader.readAsText(file);
   };
 
-  // Generate drafts
   const generateDrafts = async () => {
     setLoading(true);
     const newDrafts = topics.map(topic => ({

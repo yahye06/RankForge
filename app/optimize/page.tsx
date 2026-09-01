@@ -20,7 +20,6 @@ interface OptimizedTopic extends ContentTopic {
   projectedCTR: string;
 }
 
-// Mock analytics data
 const mockAnalytics = {
   'email marketing': { clicks: 120, impressions: 1000, ctr: 12.0 },
   'content strategy': { clicks: 45, impressions: 600, ctr: 7.5 },

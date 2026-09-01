@@ -1,29 +1,25 @@
-// Prisma client generator
 generator client {
   provider = "prisma-client-js"
 }
 
-// SQLite database
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-// Each SEO agent run
 model Run {
   id        String   @id @default(uuid())
   domain    String
   topic     String
-  keywords  String   // JSON/text later
-  brief     String   // AI output
+  keywords  String
+  brief     String
   createdAt DateTime @default(now())
 }
 
-// Each crawled page
 model Page {
   id        String   @id @default(uuid())
   url       String   @unique
   title     String?
-  headings  String? // Stored as string
+  headings  String?
   createdAt DateTime @default(now())
 }

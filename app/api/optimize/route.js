@@ -8,7 +8,6 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 export async function POST(request) {
   const { runId } = await request.json()
 
-  // Find the run by ID
   const run = await prisma.run.findUnique({
     where: { id: runId }
   })
@@ -17,7 +16,6 @@ export async function POST(request) {
     return NextResponse.json({ success: false, error: "Run not found" })
   }
 
-  // Ask Claude to improve the existing brief
   const response = await client.messages.create({
     model: "claude-3-haiku-20240307",
     max_tokens: 2000,
@@ -47,7 +45,6 @@ export async function POST(request) {
 
   const improvedBrief = response.content[0].text
 
-  // Save improved version back to database
   const updated = await prisma.run.update({
     where: { id: runId },
     data: { brief: improvedBrief }

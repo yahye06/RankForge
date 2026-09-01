@@ -1,13 +1,13 @@
-import Link from 'next/link'; // from next.js nav pages wo reloading
+import Link from 'next/link';
 
-export default function Home() { //creates homepage
+export default function Home() {
   return (
     <main style={{
       padding: "3rem",
       maxWidth: "1200px",
       margin: "0 auto",
       color: '#c124ed',
-  backgroundColor: "#000000",  // 👈 CHANGE THIS LINE
+  backgroundColor: "#000000",
       fontFamily: "system-ui, -apple-system, sans-serif"
     }}>
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
@@ -25,8 +25,7 @@ export default function Home() { //creates homepage
         gap: '2rem',
         marginTop: '2rem'
       }}>
-  {/* Week 4: Batch Generation */}
-          <Link
+        <Link
             href="/batch"
             style={{
               textDecoration: 'none',
@@ -60,7 +59,6 @@ export default function Home() { //creates homepage
           </div>
         </Link>
 
-        {/* Week 5: Optimization */}
         <Link
           href="/optimize"
           style={{
@@ -95,7 +93,6 @@ export default function Home() { //creates homepage
         </Link>
       </div>
 
-      {/* Features Overview */}
       <div style={{
         marginTop: '4rem',
         padding: '2rem',
@@ -136,7 +133,6 @@ export default function Home() { //creates homepage
         </div>
       </div>
 
-      {/* Quick Start */}
       <div style={{
         marginTop: '3rem',
         padding: '2rem',
